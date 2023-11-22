@@ -67,9 +67,6 @@ class Solution
     Node* findIntersection(Node* head1, Node* head2)
     {
         // code goes here.
-        if(head1 == NULL && head2 == NULL){
-            return head1;
-        }
         Node *curr1 = head1;
         Node *curr2 = head2;
         Node *head = NULL;
@@ -84,10 +81,20 @@ class Solution
             }
             else if(curr1->data == curr2->data){
                 if(head == NULL){
-                    
+                    head = new Node(curr1->data);
+                    tmp = head;
+                    curr1 = curr1->next;
+                    curr2 = curr2->next;
+                }
+                else{
+                    tmp->next = new Node(curr1->data);
+                    curr1 = curr1->next;
+                    curr2 = curr2->next;
+                    tmp = tmp->next;
                 }
             }
         }
+        return head;
     }
 };
 
